@@ -11,7 +11,8 @@ Jako silnika bazy danych użyjemy **PostgreSQL** .
 
 Na naszej lokalnej maszynie zdecydowaliśmy się używać Dockera do zarządzania usługami. Wygenerowany plik `compose.yaml` zawiera już PostgreSQL jako usługę:
 
-**compose.yaml** 
+
+**compose.yaml**
 ```yaml
 ###> doctrine/doctrine-bundle ###
 database:
