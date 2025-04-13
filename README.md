@@ -51,9 +51,8 @@ database:
 Uruchom Docker Compose w tle (z flagą `-d`):
 
 
-```php
+```bash
 docker compose up -d
-echo "asd";
 ```
 
 
