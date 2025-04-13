@@ -43,6 +43,7 @@ database:
 ###< doctrine/doctrine-bundle ###
 ```
 
+> [!NOTE]
 > Rozszerzenie `pdo_pgsql` powinno zostać zainstalowane podczas wcześniejszego etapu konfiguracji PHP.
 
 
@@ -77,7 +78,6 @@ guestbook_database_1   docker-entrypoint.sh postgres   Up      0.0.0.0:32780->54
 
 Jeśli nie ma uruchomionych kontenerów lub w kolumnie **State**  nie widnieje **Up** , sprawdź logi Docker Compose:
 
-
 ```bash
 docker compose logs
 ```
@@ -97,12 +97,11 @@ Dzięki tym konwencjom dostęp do bazy danych przez `symfony run` jest znacznie 
 symfony run psql
 ```
 
-Jeśli nie masz zainstalowanego polecenia `psql` na swoim hoście lokalnym, możesz je również uruchomić przez Docker Compose:
-
-
-```bash
-docker compose exec database psql app app
-```
+> [!NOTE]
+> Jeśli nie masz zainstalowanego polecenia `psql` na swoim hoście lokalnym, możesz je również uruchomić przez Docker Compose:
+> ```bash
+> docker compose exec database psql app app
+> ```
 
 
 
@@ -195,14 +194,8 @@ Po zakończeniu nie zapomnij zamknąć tunelu:
 symfony cloud:tunnel:close
 ```
 
-
-Aby uruchomić zapytania SQL na produkcyjnej bazie danych bez wchodzenia do powłoki, możesz też użyć polecenia:
-
-
-
-```bash
-symfony sql
-```
+> [!TIP]
+> Aby uruchomić zapytania SQL na produkcyjnej bazie danych bez wchodzenia do powłoki, możesz też użyć polecenia ``symfony sql``
 
 
 
@@ -250,7 +243,7 @@ Możesz jeszcze tego nie zauważyłeś, ale przechowywanie konfiguracji infrastr
 
 
 ### Warto sprawdzić dalej:
- - Usługi Platform.sh
- - Tunel Platform.sh
- - Dokumentację PostgreSQL
-- Polecenia `docker compose`
+- [Usługi Platform.sh](https://symfony.com/doc/current/cloud/services/intro.html#available-services)
+- [Tunel Platform.sh](https://symfony.com/doc/current/cloud/services/intro.html#connecting-to-a-service)
+- [Dokumentację PostgreSQL](https://www.postgresql.org/docs)
+- [Polecenia `docker compose`](https://docs.docker.com/compose/reference)
