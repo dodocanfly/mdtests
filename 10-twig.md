@@ -1,11 +1,8 @@
 ## Budowanie interfejsu użytkownika
 
-
 Wszystko jest już gotowe, aby stworzyć pierwszą wersję interfejsu użytkownika strony internetowej. Nie będziemy się teraz skupiać na wyglądzie — na razie ma po prostu działać.
 
-
 Pamiętasz, jak musieliśmy stosować mechanizmy ucieczki znaków w kontrolerze dla wielkanocnego jajka, aby uniknąć problemów z bezpieczeństwem? Właśnie dlatego nie będziemy używać PHP do szablonów. Zamiast tego skorzystamy z Twig. Oprócz tego, że [Twig](https://twig.symfony.com) automatycznie zajmuje się ucieczką znaków w wyjściu, oferuje też wiele przydatnych funkcji, z których skorzystamy — jak na przykład dziedziczenie szablonów.
-
 
 ### Użycie Twig do szablonów
 
@@ -99,9 +96,7 @@ Zaktualizuj kontroler, aby renderował szablon Twig:
 
 Dzieje się tutaj całkiem sporo.
 
-
 Aby móc renderować szablon, potrzebujemy obiektu Twig `Environment` (głównego punktu wejścia do pracy z Twig). Zwróć uwagę, że prosimy o instancję Twig, stosując podpowiedź typu (type hinting) w metodzie kontrolera. Symfony jest na tyle inteligentne, że wie, jak wstrzyknąć odpowiedni obiekt.
-
 
 Potrzebujemy również repozytorium konferencji, aby pobrać wszystkie konferencje z bazy danych.
 
@@ -319,7 +314,6 @@ Kontroler pobiera `offset` z łańcucha zapytania Request (`$request->query`) ja
 
 Offsety `previous` i `next` są obliczane na podstawie wszystkich informacji, które mamy z paginatora.
 
-
 Na koniec, zaktualizuj szablon, aby dodać linki do poprzednich i następnych stron:
 
 ```diff
@@ -401,7 +395,7 @@ Być może zauważyłeś, że obie metody w `ConferenceController` przyjmują ś
  }
 ```
 
-### Materiały dodatkowe:
+### Sprawdź również:
 - [Dokumentacja Twig](https://twig.symfony.com/doc/3.x);
 - [Tworzenie i używanie szablonów](https://symfony.com/doc/current/templates.html) w aplikacjach Symfony;
 - [Tutorial Twig na SymfonyCasts](https://symfonycasts.com/screencast/symfony/twig-recipe);
