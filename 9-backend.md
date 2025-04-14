@@ -312,7 +312,7 @@ Te dostosowania to tylko małe wprowadzenie do możliwości, jakie oferuje EasyA
 
 Pobaw się panelem administracyjnym — przefiltruj komentarze według konferencji albo wyszukaj komentarze po adresie e-mail, na przykład. Jedynym problemem jest to, że każdy może uzyskać dostęp do panelu. Nie martw się, w kolejnych krokach go zabezpieczymy.
 
-### Co dalej:
+### Materiały dodatkowe:
 - [Dokumentacja EasyAdmin](https://symfony.com/bundles/EasyAdminBundle/4.x/index.html);
 - [Referencja konfiguracji frameworka Symfony](https://symfony.com/doc/current/reference/configuration/framework.html);
 - [Magiczne metody w PHP](https://www.php.net/manual/en/language.oop5.magic.php).
