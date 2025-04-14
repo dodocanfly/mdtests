@@ -129,7 +129,7 @@ symfony run pg_dump --data-only > dump.sql
 symfony run psql < dump.sql
 ```
 
-#### Git
+### Git
 
 ##### Wyświetlenie różnic w kodzie pomiędzy podanymi krokami (branchami)
 ```bash
@@ -142,7 +142,7 @@ git diff step-9...step-10-1
 git log -- src/Controller/ConferenceController.php
 ```
 
-#### Docker
+### Docker
 
 ##### Wyświetlenie logów Docker Compose
 ```bash
