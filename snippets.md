@@ -98,6 +98,11 @@ symfony cloud:tunnel:close
 symfony tunnel:close
 ```
 
+##### Synchronizacja zmiennych środowiskowych i danych z serwera produkcyjnego Platform.sh do lokalnego ([więcej](symfony-cloud-env-sync.md))
+```bash
+symfony cloud:env:sync
+```
+
 #### symfony var
 
 ##### Lista wszystkich zmiennych środowiskowych udostępnianych przez Symfony
