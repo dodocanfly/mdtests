@@ -34,11 +34,9 @@ Pamiętasz nazwę usługi bazy danych używaną w konfiguracjach Dockera i Platf
 > [!NOTE]
 > Bazy danych nie są jedynymi usługami, które korzystają z konwencji Symfony. Dotyczy to również np. systemu Mailer (poprzez zmienną `MAILER_DSN`).
 
-
 ### Zmiana domyślnej wartości `DATABASE_URL` w pliku .env
 
 Wciąż musimy zmienić plik `.env`, aby ustawić domyślną wartość `DATABASE_URL` na użycie PostgreSQL:
-
 
 ```diff
 --- a/.env
@@ -53,37 +51,29 @@ Wciąż musimy zmienić plik `.env`, aby ustawić domyślną wartość `DATABASE
 
 Dlaczego te informacje muszą być zduplikowane w dwóch różnych miejscach? Ponieważ na niektórych platformach chmurowych podczas *budowania aplikacji* adres URL bazy danych może jeszcze nie być znany, ale Doctrine musi wiedzieć, jaki silnik bazy danych będzie użyty, aby zbudować swoją konfigurację. Dlatego host, nazwa użytkownika i hasło nie są w tym momencie istotne.
 
-
 ### Tworzenie klas encji
 
 Konferencję można opisać kilkoma właściwościami:
 
- 
 - *Miasto*, w którym organizowana jest konferencja;
 - *Rok* konferencji;
 - Flaga *isInternational*, określająca czy konferencja jest lokalna, czy międzynarodowa (SymfonyLive vs SymfonyCon).
-
 
 Pakiet Maker może pomóc w wygenerowaniu klasy (klasy encji), która będzie reprezentować konferencję.
 
 Nadszedł czas, aby wygenerować encję `Conference`:
 
-
 ```bash
 symfony console make:entity Conference
 ```
 
-
 To polecenie działa interaktywnie — poprowadzi cię przez proces dodawania wszystkich wymaganych pól. Użyj następujących odpowiedzi (większość z nich to wartości domyślne, więc możesz po prostu naciskać Enter):
-
  
 - `city`, `string`, `255`, `no`;
 - `year`, `string`, `4`, `no`;
 - `isInternational`, `boolean`, `no`.
 
-
 Przykładowy wynik polecenia: 
-
 
 ```
 created: src/Entity/Conference.php
@@ -142,7 +132,6 @@ Add another property? Enter the property name (or press <return> to stop adding 
 Next: When you're ready, create a migration with make:migration
 ```
 
-
 Klasa `Conference` została zapisana w przestrzeni nazw `App\Entity`.
 
 Polecenie wygenerowało również klasę repozytorium Doctrine: `App\Repository\ConferenceRepository`.
@@ -184,29 +173,22 @@ class Conference
 }
 ```
 
-
 Zwróć uwagę, że sama klasa to zwykła klasa PHP bez żadnych oznak działania Doctrine. Atrybuty (atrybuty PHP 8+) są używane do dodania metadanych, które Doctrine wykorzystuje do mapowania klasy na odpowiadającą jej tabelę w bazie danych.
 
 Doctrine automatycznie dodało właściwość `id` do przechowywania klucza głównego w tabeli. Ten klucz (`ORM\Id()`) jest automatycznie generowany (`ORM\GeneratedValue()`) zgodnie z wybraną strategią, zależną od silnika bazy danych.
 
 Teraz wygeneruj klasę encji dla komentarzy do konferencji:
 
-
-
 ```bash
 symfony console make:entity Comment
 ```
 
-
 Wprowadź następujące odpowiedzi:
 
- 
 - `author`, `string`, `255`, `no`;
 - `text`, `text`, `no`;
 - `email`, `string`, `255`, `no`;
 - `createdAt`, `datetime_immutable`, `no`.
-
-
 
 ### Łączenie encji
 
@@ -214,12 +196,9 @@ Dwie encje — `Conference` i `Comment` — powinny zostać ze sobą powiązane.
 
 Użyj ponownie polecenia `make:entity`, aby dodać tę relację do klasy `Conference`:
 
-
 ```bash
 symfony console make:entity Conference
 ```
-
-
 
 ```
 Your entity already exists! So let's add some new fields!
@@ -254,9 +233,7 @@ updated: src/Entity/Conference.php
 updated: src/Entity/Comment.php
 ```
 
-
 W ten sposób Symfony automatycznie skonfiguruje relację jeden-do-wielu między konferencją a komentarzami, aktualizując obie klasy.
-
 
 > [!TIP]
 > Jeśli wpiszesz `?` jako odpowiedź dla typu pola, otrzymasz listę wszystkich obsługiwanych typów:
@@ -295,9 +272,7 @@ W ten sposób Symfony automatycznie skonfiguruje relację jeden-do-wielu między
 > - `json_array`
 > ```
 
-
 Spójrz na pełną różnicę (*diff*) w klasach encji po dodaniu relacji:
-
 
 ```diff
 --- a/src/Entity/Comment.php
@@ -394,9 +369,7 @@ Spójrz na pełną różnicę (*diff*) w klasach encji po dodaniu relacji:
  }
 ```
 
-
 Wszystko, co potrzebne do zarządzania relacją, zostało wygenerowane automatycznie. Po wygenerowaniu kod staje się Twoją własnością — możesz go dowolnie modyfikować i dostosowywać.
-
 
 ### Dodawanie kolejnych właściwości
 
@@ -404,14 +377,11 @@ Właśnie zdałem sobie sprawę, że zapomnieliśmy dodać jednej właściwości
 
 Uruchom ponownie `make:entity` i dodaj kolumnę/właściwość `photoFilename` typu `string`, ale pozwól, aby mogła być pusta (null), ponieważ dodanie zdjęcia jest opcjonalne:
 
-
 ```bash
 symfony console make:entity Comment
 ```
 
-
 ### Migracja bazy danych
-
 
 Model projektu został teraz w pełni opisany przez dwie wygenerowane klasy.
 
@@ -422,8 +392,6 @@ Doctrine Migrations doskonale nadaje się do tego zadania. Został już zainstal
 Migracja to klasa opisująca zmiany niezbędne do zaktualizowania schematu bazy danych z obecnego stanu do nowego, zdefiniowanego przez atrybuty encji. Ponieważ baza danych jest obecnie pusta, migracja powinna składać się z utworzenia dwóch tabel.
 
 Zobaczmy, co wygeneruje Doctrine:
-
-
 
 ```bash
 symfony console make:migration
@@ -458,31 +426,25 @@ final class Version00000000000000 extends AbstractMigration
 }
 ```
 
-
 Ten plik zawiera wszystkie potrzebne instrukcje SQL do utworzenia tabel i relacji między nimi.
-
 
 ### Aktualizacja lokalnej bazy danych
 
 Teraz możesz uruchomić wygenerowaną migrację, aby zaktualizować lokalny schemat bazy danych:
 
-
 ```bash
 symfony console doctrine:migrations:migrate
 ```
 
-
 Lokalny schemat bazy danych jest teraz zaktualizowany i gotowy do przechowywania danych.
 
-
 ### Aktualizacja bazy danych produkcyjnej
-
 
 Kroki potrzebne do migracji bazy danych produkcyjnej są takie same, jak te, które już znasz: zatwierdź zmiany i wdroż.
 
 Podczas wdrażania projektu, Platform.sh aktualizuje kod, ale także uruchamia migrację bazy danych, jeśli taka istnieje (wykrywa, czy polecenie `doctrine:migrations:migrate` jest dostępne).
 
-### Materiały dodatkowe:
+### Sprawdź również:
 - [Bazy danych i Doctrine ORM](https://symfony.com/doc/current/doctrine.html) w aplikacjach Symfony;
 - [Samouczek SymfonyCasts dotyczący Doctrine](https://symfonycasts.com/screencast/symfony-doctrine/install);
 - [Praca z powiązaniami/relacjami Doctrine](https://symfony.com/doc/current/doctrine/associations.html);
