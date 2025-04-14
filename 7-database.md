@@ -248,3 +248,8 @@ Możesz jeszcze tego nie zauważyłeś, ale przechowywanie konfiguracji infrastr
 - [Tunel Platform.sh](https://symfony.com/doc/current/cloud/services/intro.html#connecting-to-a-service)
 - [Dokumentację PostgreSQL](https://www.postgresql.org/docs)
 - [Polecenia `docker compose`](https://docs.docker.com/compose/reference)
+
+---
+
+- **Poprzednia strona:** [Poprzednia strona...](6-6th.md)
+- **Następna strona:** [Opis struktury danych](8-doctrine.md)
