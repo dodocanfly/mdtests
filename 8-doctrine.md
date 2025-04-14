@@ -482,8 +482,7 @@ Kroki potrzebne do migracji bazy danych produkcyjnej są takie same, jak te, kt�
 
 Podczas wdrażania projektu, Platform.sh aktualizuje kod, ale także uruchamia migrację bazy danych, jeśli taka istnieje (wykrywa, czy polecenie `doctrine:migrations:migrate` jest dostępne).
 
-
-### Dalsze kroki:
+### Materiały dodatkowe:
 - [Bazy danych i Doctrine ORM](https://symfony.com/doc/current/doctrine.html) w aplikacjach Symfony;
 - [Samouczek SymfonyCasts dotyczący Doctrine](https://symfonycasts.com/screencast/symfony-doctrine/install);
 - [Praca z powiązaniami/relacjami Doctrine](https://symfony.com/doc/current/doctrine/associations.html);
