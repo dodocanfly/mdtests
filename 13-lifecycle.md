@@ -308,3 +308,8 @@ Dostęp do stron konferencji powinien teraz odbywać się za pomocą jej sluga:
 - [Dokumentacja komponentu String](https://symfony.com/doc/current/components/string.html);
 - [Kontener usług](https://symfony.com/doc/current/service_container.html);
 - [Ściąga z usług Symfony](https://github.com/andreia/symfony-cheat-sheets/blob/master/Symfony4/services_en_42.pdf) (Symfony Services Cheat Sheet).
+
+---
+
+- **Poprzednia strona:** [Nasłuchiwanie zdarzeń](12-event.md)
+- **Następna strona:** [Akceptowanie opinii za pomocą formularzy](14-form.md)
