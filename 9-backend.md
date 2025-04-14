@@ -2,22 +2,16 @@
 
 Dodawanie nadchodzących konferencji do bazy danych należy do zadań administratorów projektu. Zaplecze administratora to chroniona sekcja strony internetowej, w której administratorzy projektu mogą zarządzać danymi strony, moderować zgłoszenia opinii i nie tylko.
 
-
 Jak możemy to zrobić szybko? Korzystając z pakietu, który potrafi wygenerować zaplecze administratora na podstawie modelu projektu. EasyAdmin idealnie się do tego nadaje.
 
 ### Instalowanie dodatkowych zależności
 
 Chociaż pakiet webapp automatycznie dodał wiele przydatnych pakietów, do niektórych bardziej specyficznych funkcji musimy dodać dodatkowe zależności. Jak możemy dodać więcej zależności? Za pomocą Composera. Oprócz "zwykłych" pakietów Composera, będziemy pracować z dwoma "specjalnymi" rodzajami pakietów:
-
  
 - **Komponenty Symfony**: Pakiety, które implementują funkcje podstawowe i niskopoziomowe abstrakcje, które są potrzebne większości aplikacji (routing, konsola, klient HTTP, mailer, cache, ...);
- 
 - **Bundle Symfony**: Pakiety, które dodają funkcje wysokiego poziomu lub zapewniają integrację z bibliotekami zewnętrznymi (bundles są głównie tworzone przez społeczność).
 
-
 Dodajmy EasyAdmin jako zależność projektu:
-
-
 
 ```bash
 symfony composer req "easycorp/easyadmin-bundle:4.x-dev"
@@ -31,23 +25,17 @@ Kolejną przydatną funkcją jest to, że zawsze możesz pominąć prefiks symfo
 > [!NOTE]
 > Pamiętasz, że wcześniej wspomnieliśmy o wtyczce Composera o nazwie `symfony/flex`? Aliasy to jedna z jej funkcji.
 
-
 ### Konfigurowanie EasyAdmin
 
 EasyAdmin automatycznie generuje panel administracyjny dla Twojej aplikacji na podstawie określonych kontrolerów.
 
-
 Aby rozpocząć pracę z EasyAdmin, wygenerujmy „dashboard administracyjny”, który będzie głównym punktem wejścia do zarządzania danymi strony:
-
-
 
 ```bash
 symfony console make:admin:dashboard
 ```
 
-
 Zaakceptowanie domyślnych odpowiedzi spowoduje utworzenie następującego kontrolera:
-
 
 **src/Controller/Admin/DashboardController.php**
 ```php
@@ -91,13 +79,11 @@ Dostęp do wygenerowanego zaplecza administracyjnego uzyskasz pod adresem `/admi
 
 Boom! Mamy ładnie wyglądający szkielet panelu administracyjnego, gotowy do dostosowania do naszych potrzeb.
 
-
 Następnym krokiem jest utworzenie kontrolerów do zarządzania konferencjami i komentarzami.
 
 W kontrolerze dashboardu mogłeś zauważyć metodę `configureMenuItems()`, która zawiera komentarz dotyczący dodawania linków do „CRUD-ów”. **CRUD** to skrót od „Create, Read, Update, Delete” (Tworzenie, Odczyt, Aktualizacja, Usuwanie) — cztery podstawowe operacje, które wykonuje się na każdej encji. Dokładnie tego oczekujemy od panelu administratora. EasyAdmin idzie o krok dalej i zapewnia także funkcje wyszukiwania oraz filtrowania.
 
 Wygenerujmy teraz CRUD dla konferencji:
-
 
 ```bash
 symfony console make:admin:crud
@@ -309,10 +295,9 @@ Metoda `configureFilters()` określa, które filtry mają być dostępne nad pol
 
 Te dostosowania to tylko małe wprowadzenie do możliwości, jakie oferuje EasyAdmin.
 
-
 Pobaw się panelem administracyjnym — przefiltruj komentarze według konferencji albo wyszukaj komentarze po adresie e-mail, na przykład. Jedynym problemem jest to, że każdy może uzyskać dostęp do panelu. Nie martw się, w kolejnych krokach go zabezpieczymy.
 
-### Materiały dodatkowe:
+### Sprawdź również:
 - [Dokumentacja EasyAdmin](https://symfony.com/bundles/EasyAdminBundle/4.x/index.html);
 - [Referencja konfiguracji frameworka Symfony](https://symfony.com/doc/current/reference/configuration/framework.html);
 - [Magiczne metody w PHP](https://www.php.net/manual/en/language.oop5.magic.php).
