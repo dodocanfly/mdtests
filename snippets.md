@@ -1,14 +1,10 @@
-#### Symfony
+### Symfony
+
+#### symfony new
 
 ##### Klonowanie repozytorium [https://github.com/the-fast-track/book-6.4-1](https://github.com/the-fast-track/book-6.4-1)
 ```bash
 symfony new --version=6.4-1 --book guestbook
-```
-
-##### Przejście do kodu z końca kroku 10 / podkroku 10.2
-```bash
-symfony book:checkout 10
-symfony book:checkout 10.2
 ```
 
 ##### Tworzenie nowej aplikacji Symfony
@@ -21,15 +17,32 @@ symfony new guestbook --version=6.4 --php=8.3 --webapp --docker --cloud
 - `--docker` - na lokalnym komputerze używamy Dockera do zarządzania usługami, takimi jak PostgreSQL - ta opcja automatycznie dodaje odpowiednie konfiguracje dla Dockera
 - `--cloud` - jeśli chcesz wdrożyć projekt na Platform.sh, ta opcja generuje pliki konfiguracyjne niezbędne do tego środowiska
 
+#### symfony book
+
+##### Przejście do kodu z końca kroku 10 / podkroku 10.2
+```bash
+symfony book:checkout 10
+symfony book:checkout 10.2
+```
+
+#### symfony server / open
+
 ##### Uruchomienie lokalnego serwera w tle
 ```bash
 symfony server:start -d
+```
+
+##### Uruchonienie logów lokalnego serwera w konsoli
+```bash
+symfony server:log
 ```
 
 ##### Otwarcie strony aplikacji w przeglądarce (lokalnie)
 ```bash
 symfony open:local
 ```
+
+#### symfony cloud
 
 ##### Tworzenie nowego zdalnego projektu na Platform.sh
 ```bash
@@ -51,11 +64,6 @@ symfony cloud:url -1
 symfony cloud:project:delete
 ```
 
-##### Uruchonienie logów lokalnego serwera w konsoli
-```bash
-symfony server:log
-```
-
 ##### Wyświetlenie w konsoli logów z serwera produkcyjnego Platform.sh
 ```bash
 symfony cloud:log --tail
@@ -66,9 +74,59 @@ symfony cloud:log --tail
 symfony cloud:ssh
 ```
 
+##### Otwarcie tunelu SSH między lokalną maszyną a infrastrukturą Platform.sh
+```bash
+symfony cloud:tunnel:open
+symfony tunnel:open
+```
+
+##### Wyświetlenie listy tuneli
+```bash
+symfony cloud:tunnels
+symfony tunnels
+```
+
+##### Wyświetlenie informacji o tunelu
+```bash
+symfony cloud:tunnel:info
+symfony tunnel:info
+```
+
+##### Zamknięcie otwartego tunelu
+```bash
+symfony cloud:tunnel:close
+symfony tunnel:close
+```
+
+#### symfony var
+
+##### Lista wszystkich zmiennych środowiskowych udostępnianych przez Symfony
+```bash
+symfony var:export
+```
+
+##### Eksport zmiennych środowiskowych z serwera Platform.sh połączonego tunelem
+```bash
+symfony var:expose-from-tunnel
+```
+
+#### symfony console
+
 ##### Wyświetlenie listy wszystkich generatowów kodu Symfony
 ```bash
 symfony console list make
+```
+
+#### symfony run
+
+##### Zrzut danych z bazy PostgreSQL
+```bash
+symfony run pg_dump --data-only > dump.sql
+```
+
+##### Przywrócenie danych z pliku
+```bash
+symfony run psql < dump.sql
 ```
 
 #### Git
