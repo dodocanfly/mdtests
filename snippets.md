@@ -137,6 +137,11 @@ symfony console doctrine:migrations:migrate
 symfony console make:admin:dashboard
 ```
 
+##### Generowanie CRUD dla encji w EasyAdmin
+```bash
+symfony console make:admin:crud
+```
+
 #### symfony run
 
 ##### Zrzut danych z bazy PostgreSQL
