@@ -1,3 +1,5 @@
+#### Symfony
+
 ##### Klonowanie repozytorium [https://github.com/the-fast-track/book-6.4-1](https://github.com/the-fast-track/book-6.4-1)
 ```bash
 symfony new --version=6.4-1 --book guestbook
@@ -7,17 +9,6 @@ symfony new --version=6.4-1 --book guestbook
 ```bash
 symfony book:checkout 10
 symfony book:checkout 10.2
-```
-
-##### Wyświetlenie różnic w kodzie pomiędzy podanymi krokami (branchami)
-```bash
-git diff step-10-1...step-10-2
-git diff step-9...step-10-1
-```
-
-##### Sprawdzanie kiedy dany plik został utworzony lub zmodyfikowany
-```bash
-git log -- src/Controller/ConferenceController.php
 ```
 
 ##### Tworzenie nowej aplikacji Symfony
@@ -80,3 +71,22 @@ symfony cloud:ssh
 symfony console list make
 ```
 
+#### Git
+
+##### Wyświetlenie różnic w kodzie pomiędzy podanymi krokami (branchami)
+```bash
+git diff step-10-1...step-10-2
+git diff step-9...step-10-1
+```
+
+##### Sprawdzanie kiedy dany plik został utworzony lub zmodyfikowany
+```bash
+git log -- src/Controller/ConferenceController.php
+```
+
+#### Docker
+
+##### Wyświetlenie logów Docker Compose
+```bash
+docker compose logs
+```
