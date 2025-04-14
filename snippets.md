@@ -117,6 +117,26 @@ symfony var:expose-from-tunnel
 symfony console list make
 ```
 
+##### Tworzenie encji i repozytorium
+```bash
+symfony console make:entity Comment
+```
+
+##### Tworzenie migracji
+```bash
+symfony console make:migration
+```
+
+##### Uruchamia migracje
+```bash
+symfony console doctrine:migrations:migrate
+```
+
+##### Generowanie panelu EasyAdmin (wymaga instalacji "admin:^4")
+```bash
+symfony console make:admin:dashboard
+```
+
 #### symfony run
 
 ##### Zrzut danych z bazy PostgreSQL
@@ -127,6 +147,15 @@ symfony run pg_dump --data-only > dump.sql
 ##### Przywrócenie danych z pliku
 ```bash
 symfony run psql < dump.sql
+```
+
+### Composer
+
+##### Instalowanie EasyAdmina
+```bash
+symfony composer req "admin:^4"
+# lub
+composer req "easycorp/easyadmin-bundle:4.x-dev"
 ```
 
 ### Git
