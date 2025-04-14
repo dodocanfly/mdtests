@@ -6,7 +6,7 @@ Czas pozwolić uczestnikom konferencji wyrazić swoją opinię. Będą oni przek
 
 Użyj pakietu Maker, aby wygenerować klasę formularza:
 
-``bash
+```bash
 symfony console make:form CommentType Comment
 ```
 
