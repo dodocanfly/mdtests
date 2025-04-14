@@ -155,7 +155,7 @@ Ostatnim krokiem jest podpięcie paneli administracyjnych dla konferencji i kome
 
 Nadpisaliśmy metodę `configureMenuItems()`, aby dodać pozycje menu z odpowiednimi ikonami dla konferencji i komentarzy oraz dodać link powrotny do strony głównej serwisu.
 
-EasyAdmin udostępnia API, które ułatwia linkowanie do CRUD-ów encji za pomocą metody `MenuItem::linkToRoute()`.
+EasyAdmin udostępnia API, które ułatwia linkowanie do CRUD-ów encji za pomocą metody `MenuItem::linkToCrud()`.
 
 Główna strona dashboardu jest na razie pusta. To miejsce, w którym możesz wyświetlać statystyki lub inne istotne informacje. Ponieważ nie mamy obecnie nic ważnego do pokazania, przekierujmy użytkownika od razu na listę konferencji:
 
