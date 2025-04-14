@@ -14,6 +14,8 @@ Chociaż pakiet webapp automatycznie dodał wiele przydatnych pakietów, do niek
 Dodajmy EasyAdmin jako zależność projektu:
 
 ```bash
+symfony composer req "admin:^4"
+# lub
 symfony composer req "easycorp/easyadmin-bundle:4.x-dev"
 ```
 
