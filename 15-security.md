@@ -181,10 +181,10 @@ Kliknij link "*Wyloguj się*" (Sign out). Udało się! Masz w pełni zabezpieczo
 > Jeśli chcesz stworzyć pełnoprawny system rejestracji z formularzem, zapoznaj się z poleceniem: `symfony console make:registration-form`
 
 ### Sprawdź również:
-- [Dokumentacja Symfony Security](https://symfony.com/doc/current/security.html)  
-- [Kurs SymfonyCasts: Security](https://symfonycasts.com/screencast/symfony-security)  
-- [Jak zbudować formularz logowania w Symfony](https://symfony.com/doc/current/security/form_login_setup.html)  
-- [Symfony Security Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Symfony_Security_Cheat_Sheet.html)
+- [Dokumentacja Symfony Security](https://symfony.com/doc/current/security.html);
+- [Kurs SymfonyCasts: Security](https://symfonycasts.com/screencast/symfony-security);
+- [Jak zbudować formularz logowania w Symfony](https://symfony.com/doc/current/security/form_login_setup.html);
+- [Ściąga z bezpieczeństwa Symfony](https://cheatsheetseries.owasp.org/cheatsheets/Symfony_Security_Cheat_Sheet.html) (Symfony Security Cheat Sheet).
 
 ---
 
