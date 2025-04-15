@@ -108,6 +108,7 @@ symfony cloud:env:sync
 ##### Lista wszystkich zmiennych środowiskowych udostępnianych przez Symfony
 ```bash
 symfony var:export
+symfony var:export | sed 's/ /\n/g' | sort
 ```
 
 ##### Eksport zmiennych środowiskowych z serwera Platform.sh połączonego tunelem
