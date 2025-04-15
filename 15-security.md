@@ -59,11 +59,132 @@ symfony console make:migration
 symfony console doctrine:migrations:migrate -n
 ```
 
+### Generowanie hasła dla użytkownika Admin
 
-[...]
+Nie będziemy tworzyć dedykowanego systemu do zakładania kont administratorów. Ponownie – będziemy mieć tylko jednego administratora. Login będzie brzmiał `admin`, a my musimy wygenerować skrót (hash) hasła.
+
+Wybierz dowolne hasło i uruchom poniższe polecenie, aby wygenerować jego hash:
+
+```bash
+symfony console security:hash-password
+```
+
+```
+Symfony Password Hash Utility
+=============================
+
+ Type in your password to be hashed:
+ >
+
+ ------------------ ---------------------------------------------------------------------------------------------------
+  Key                Value
+ ------------------ ---------------------------------------------------------------------------------------------------
+  Hasher used        Symfony\Component\PasswordHasher\Hasher\MigratingPasswordHasher
+  Password hash      $argon2id$v=19$m=65536,t=4,p=1$BQG+jovPcunctc30xG5PxQ$TiGbx451NKdo+g9vLtfkMy4KjASKSOcnNxjij4gTX1s
+ ------------------ ---------------------------------------------------------------------------------------------------
+
+ ! [NOTE] Self-salting hasher used: the hasher generated its own built-in salt.
+
+
+ [OK] Password hashing succeeded
+```
+
+### Tworzenie użytkownika Admin
+
+Wstaw użytkownika administratora za pomocą zapytania SQL:
+
+```bash
+symfony run psql -c "INSERT INTO admin (id, username, roles, password) \
+  VALUES (nextval('admin_id_seq'), 'admin', '[\"ROLE_ADMIN\"]', \
+  '\$argon2id\$v=19\$m=65536,t=4,p=1\$BQG+jovPcunctc30xG5PxQ\$TiGbx451NKdo+g9vLtfkMy4KjASKSOcnNxjij4gTX1s')"
+```
+
+Zwróć uwagę na znak `$` w haśle — wszystkie trzeba poprzedzić znakiem `\` (escape)!
+
+### Konfigurowanie uwierzytelniania (Authentication) w Symfony
+
+Skoro mamy już użytkownika *admin*, możemy zabezpieczyć panel administracyjny. Symfony obsługuje kilka strategii uwierzytelniania — my skorzystamy z klasycznego, popularnego *logowania przez formularz*.
+
+Uruchom polecenie, które zaktualizuje konfigurację bezpieczeństwa, wygeneruje szablon logowania i utworzy odpowiedni *authenticator*:
+
+```bash
+symfony console make:security:form-login
+```
+
+Nazwij kontroler `SecurityController` i potwierdź, że chcesz wygenerować URL `/logout` (`tak`).
+
+Polecenie to zaktualizowało konfigurację bezpieczeństwa i powiązało wygenerowane klasy:
+
+```diff
+--- a/config/packages/security.yaml
++++ b/config/packages/security.yaml
+@@ -15,7 +15,15 @@ security:
+             security: false
+         main:
+             lazy: true
+-            provider: users_in_memory
++            provider: app_user_provider
++            form_login:
++                login_path: app_login
++                check_path: app_login
++                enable_csrf: true
++            logout:
++                path: app_logout
++                # where to redirect after logout
++                # target: app_any_route
+
+             # activate different ways to authenticate
+             # https://symfony.com/doc/current/security.html#the-firewall
+```
+
+> [!TIP]
+> Jak zapamiętać, że ścieżka EasyAdmin to `/admin` (zgodnie z konfiguracją w `App\Controller\Admin\DashboardController`)? Nie musisz! Możesz sprawdzić to w pliku, ale szybciej będzie uruchomić polecenie pokazujące powiązania między nazwami i ścieżkami routingu:
+> ```bash
+> symfony console debug:router
+> ```
+
+### Dodawanie reguł kontroli dostępu (Authorization)
+
+System bezpieczeństwa składa się z dwóch części: *uwierzytelniania* (*authentication*) i *autoryzacji* (*authorization*)*. Tworząc użytkownika admina, nadaliśmy mu rolę `ROLE_ADMIN`. Ograniczmy dostęp do sekcji `/admin` tylko dla użytkowników z tą rolą, dodając regułę `access_control`:
+
+```diff
+--- a/config/packages/security.yaml
++++ b/config/packages/security.yaml
+@@ -34,7 +34,7 @@ security:
+     # Easy way to control access for large sections of your site
+     # Note: Only the *first* access control that matches will be used
+     access_control:
+-        # - { path: ^/admin, roles: ROLE_ADMIN }
++        - { path: ^/admin, roles: ROLE_ADMIN }
+         # - { path: ^/profile, roles: ROLE_USER }
+
+ when@test:
+```
+
+Reguły `access_control` ograniczają dostęp na podstawie wyrażeń regularnych. Przy próbie dostępu do adresu zaczynającego się od `/admin`, Symfony sprawdzi, czy zalogowany użytkownik ma rolę `ROLE_ADMIN`.
+
+### Logowanie przez formularz
+
+Jeśli spróbujesz teraz wejść na panel administracyjny, zostaniesz przekierowany na stronę logowania i poproszony o podanie loginu oraz hasła:
+
+![easy-admin-login](https://symfony.com/doc/6.4en//the-fast-track/_images/easy-admin-login.png)
+
+Zaloguj się używając loginu `admin` oraz hasła w postaci zwykłego tekstu, które wybrałeś wcześniej. Jeśli skopiowałeś dokładnie moje polecenie SQL, hasło to `admin`.
+
+Zwróć uwagę, że EasyAdmin automatycznie rozpoznaje system uwierzytelniania Symfony:
+
+![easy-admin-secured](https://symfony.com/doc/6.4en//the-fast-track/_images/easy-admin-secured.png)
+
+Kliknij link "*Wyloguj się*" (Sign out). Udało się! Masz w pełni zabezpieczony panel administratora.
+
+> [!NOTE]
+> Jeśli chcesz stworzyć pełnoprawny system rejestracji z formularzem, zapoznaj się z poleceniem: `symfony console make:registration-form`
 
 ### Sprawdź również:
-- [...]
+- [Dokumentacja Symfony Security](https://symfony.com/doc/current/security.html)  
+- [Kurs SymfonyCasts: Security](https://symfonycasts.com/screencast/symfony-security)  
+- [Jak zbudować formularz logowania w Symfony](https://symfony.com/doc/current/security/form_login_setup.html)  
+- [Symfony Security Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Symfony_Security_Cheat_Sheet.html)
 
 ---
 
