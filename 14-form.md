@@ -20,3 +20,16 @@ created: src/Form/CommentType.php
 Next: Add fields to your form and start using it.
 Find the documentation at https://symfony.com/doc/current/forms.html
 ```
+
+
+
+
+### Sprawdź również:
+- [Przepływ żądania i odpowiedzi](https://symfony.com/doc/current/components/http_kernel.html#the-workflow-of-a-request) w aplikacjach Symfony;
+- [Wbudowane zdarzenia HTTP w Symfony](https://symfony.com/doc/current/reference/events.html);
+- [Wbudowane zdarzenia konsoli w Symfony](https://symfony.com/doc/current/components/console/events.html).
+
+---
+
+- **Poprzednia strona:** [Zarządzanie cyklem życia obiektów Doctrine](13-lifecycle.md)
+- **Następna strona:** [Zabezpieczanie panelu administracyjnego](15-security.md)
